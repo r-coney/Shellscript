@@ -1,5 +1,26 @@
 #!/bin/bash
 
+usage()
+{
+	# シェルスクリプト名を取得
+	local script_name=$(basename "$0")
+
+	cat << END
+Usage: $script_name DIRECTORY
+Tree view of file listing in DIRECTORY.
+
+  DIRECTORY:  parent directory
+
+Example:
+  $script_name ~
+END
+}
+
+if [ "$#" -eq 0 ]; then
+	usage
+	exit 1
+fi
+
 list_recursive()
 {
 	local filepath=$1
